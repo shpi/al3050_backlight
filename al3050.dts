@@ -1,0 +1,30 @@
+/dts-v1/;
+/plugin/;
+
+/{
+    compatible = "brcm,bcm2835", "brcm,bcm2836", "brcm,bcm2708", "brcm,bcm2709";
+
+    fragment@0 {
+        target-path = [2f 00];
+
+        __overlay__ {
+
+            al3050_bl {
+                compatible = "al3050_bl";
+                gpios = <0xdeadbeef 0x13 0x0>;
+                fb = <0xdeadbeef>;
+                linux,phandle = <0x1>;
+                phandle = <0x1>;
+            };
+        };
+    };
+
+    __symbols__ {
+        al3050_bl = "/fragment@0/__overlay__/al3050_bl";
+    };
+
+    __fixups__ {
+        gpio = "/fragment@0/__overlay__/al3050_bl:gpios:0";
+        fb = "/fragment@0/__overlay__/al3050_bl:fb:0";
+    };
+};
