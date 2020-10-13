@@ -113,7 +113,7 @@ static int al3050_backlight_set_value(struct backlight_device *bl)
 	ndelay(T_EOS_NS);
 	gpiod_direction_output(alb->gpiod,1);
 	alb->last_brightness = bl->props.brightness;
-	return bl->props.brightness;
+	return 0;
 }
 
 static int al3050_backlight_update_status(struct backlight_device *bl)
