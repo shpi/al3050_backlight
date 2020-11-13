@@ -32,8 +32,8 @@
 #define T_START_NS		4000
 #define T_EOS_NS		4000
 #define T_RESET_MS		4
-#define T_LOGIC_1_NS		4000
-#define T_LOGIC_0_NS		9000
+#define T_LOGIC_1_NS		5000
+#define T_LOGIC_0_NS		15000
 #define T_LOGIC_NS		T_LOGIC_1_NS + T_LOGIC_0_NS
 #define BRIGHTNESS_MAX		31
 #define BRIGHTNESS_BMASK	0x1f
@@ -137,7 +137,7 @@ static int al3050_backlight_set_value(struct backlight_device *bl)
 			max_ack_time -= RFA_ACK_WAIT;
 		}
 		if (max_ack_time <= 0) {
-			dev_err(pchip->fbdev,"AL3050 : no ack \n"); 
+			printk(KERN_ERR "AL3050 no ack, reinit."); 
                         al3050_init(bl);
                        }
 		else
